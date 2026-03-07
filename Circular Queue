@@ -1,0 +1,69 @@
+class CircularQueue{
+    int *arr;
+    int front;
+    int rear;
+    int size;
+
+public:
+    // initialise your data structure
+    CircularQueue(int n) {
+        size = n;
+        arr = new int[size];
+        front = rear = -1;
+    }
+
+    // Enqueue
+    bool enqueue(int value){
+
+        // check queue full
+        if((front == 0 && rear == size-1) || (rear == (front-1+size)%size)){
+            return false;
+        }
+
+        // first element
+        else if(front == -1){
+            front = rear = 0;
+        }
+
+        // circular condition
+        else if(rear == size-1 && front != 0){
+            rear = 0;
+        }
+
+        // normal case
+        else{
+            rear++;
+        }
+
+        arr[rear] = value;
+        return true;
+    }
+
+    // Dequeue
+    int dequeue(){
+
+        if(front == -1){
+            return -1;
+        }
+
+        int ans = arr[front];
+        arr[front] = -1;
+
+        // single element
+        if(front == rear){
+            front = rear = -1;
+        }
+
+        // circular move
+        else if(front == size-1){
+            front = 0;
+        }
+
+        // normal case
+        else{
+            front++;
+        }
+
+        return ans;
+    }
+};
