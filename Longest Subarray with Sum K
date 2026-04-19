@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int longestSubarray(vector<int>& arr, int k) {
+        int n = arr.size();
+        int maxlen = 0;
+        long long sum = 0;
+        int left = 0;
+
+        for(int right = 0; right < n; right++) {
+            sum += arr[right];
+
+            // shrink the window while sum > k
+            while(sum > k && left <= right) {
+                sum -= arr[left];
+                left++;
+            }
+
+            // update maxlen if sum equals k
+            if(sum == k) {
+                maxlen = max(maxlen, right - left + 1);
+            }
+        }
+
+        return maxlen;
+    }
+};
