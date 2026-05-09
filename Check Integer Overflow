@@ -1,0 +1,20 @@
+bool checkOverflowOfMultiplication(int a, int b)
+{
+    if (a == 0 || b == 0)
+        return false;
+
+    if (a > 0)
+    {
+        if (b > 0)
+            return a > INT_MAX / b;
+        else
+            return b < INT_MIN / a;
+    }
+    else
+    {
+        if (b > 0)
+            return a < INT_MIN / b;
+        else
+            return a < INT_MAX / b;
+    }
+}
