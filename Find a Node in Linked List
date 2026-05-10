@@ -1,0 +1,17 @@
+int findNode(Node *head, int n)
+{
+    int index = 0;
+
+    while (head != NULL)
+    {
+        if (head->data == n)
+        {
+            return index;
+        }
+
+        head = head->next;
+        index++;
+    }
+
+    return -1;
+}
