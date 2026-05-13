@@ -1,0 +1,50 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+vector<int> smallestSubarrayWithKDistinct(vector<int> &A, int K)
+{
+    int n = A.size();
+
+    unordered_map<int, int> freq;
+
+    int left = 0;
+    int minLen = INT_MAX;
+
+    vector<int> ans;
+
+    for (int right = 0; right < n; right++)
+    {
+        freq[A[right]]++;
+
+        while ((int)freq.size() > K)
+        {
+            freq[A[left]]--;
+
+            if (freq[A[left]] == 0)
+                freq.erase(A[left]);
+
+            left++;
+        }
+
+        while ((int)freq.size() == K)
+        {
+            if (right - left + 1 < minLen)
+            {
+                minLen = right - left + 1;
+                ans = {left, right};
+            }
+
+            freq[A[left]]--;
+
+            if (freq[A[left]] == 0)
+                freq.erase(A[left]);
+
+            left++;
+        }
+    }
+
+    if (ans.empty())
+        return {-1};
+
+    return ans;
+}
