@@ -1,0 +1,20 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+void solve(string str, int index) {
+    if (index == str.length()) {
+        cout << str << endl;
+        return;
+    }
+
+    for (int i = index; i < str.length(); i++) {
+        swap(str[index], str[i]);
+        solve(str, index + 1);
+    }
+}
+
+void printPermutations(string input) {
+    sort(input.begin(), input.end());
+    solve(input, 0);
+}
