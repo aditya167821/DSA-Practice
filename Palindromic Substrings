@@ -1,0 +1,29 @@
+int palindromicSubstrings(string str)
+{
+    int n = str.length();
+    int count = 0;
+
+    for (int center = 0; center < n; center++)
+    {
+        int left = center, right = center;
+
+        while (left >= 0 && right < n && str[left] == str[right])
+        {
+            count++;
+            left--;
+            right++;
+        }
+
+        left = center;
+        right = center + 1;
+
+        while (left >= 0 && right < n && str[left] == str[right])
+        {
+            count++;
+            left--;
+            right++;
+        }
+    }
+
+    return count;
+}
