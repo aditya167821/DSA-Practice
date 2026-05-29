@@ -1,0 +1,33 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+class myHashMap {
+    unordered_map<string, int> mp;
+
+public:
+    void insert(string key, int value) {
+        mp[key] = value;
+    }
+
+    void remove(string key) {
+        mp.erase(key);
+    }
+
+    bool search(string key) {
+        return mp.find(key) != mp.end();
+    }
+
+    int get(string key) {
+        if (mp.find(key) != mp.end())
+            return mp[key];
+        return -1;
+    }
+
+    int getSize() {
+        return mp.size();
+    }
+
+    bool isEmpty() {
+        return mp.empty();
+    }
+};
