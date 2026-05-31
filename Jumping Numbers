@@ -1,0 +1,30 @@
+vector<int> jumpingNumbers(int N) {
+    vector<int> ans;
+    ans.push_back(0);
+
+    queue<long long> q;
+
+    for (int i = 1; i <= 9; i++) {
+        q.push(i);
+    }
+
+    while (!q.empty()) {
+        long long num = q.front();
+        q.pop();
+
+        if (num > N) continue;
+
+        ans.push_back(num);
+
+        int lastDigit = num % 10;
+
+        if (lastDigit > 0)
+            q.push(num * 10 + lastDigit - 1);
+
+        if (lastDigit < 9)
+            q.push(num * 10 + lastDigit + 1);
+    }
+
+    sort(ans.begin(), ans.end());
+    return ans;
+}
