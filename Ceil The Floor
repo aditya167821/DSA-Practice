@@ -1,0 +1,32 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+pair<int, int> getFloorAndCeil(vector<int> &a, int n, int x) {
+    int floorVal = -1, ceilVal = -1;
+
+    int low = 0, high = n - 1;
+    while (low <= high) {
+        int mid = low + (high - low) / 2;
+
+        if (a[mid] <= x) {
+            floorVal = a[mid];
+            low = mid + 1;
+        } else {
+            high = mid - 1;
+        }
+    }
+
+    low = 0, high = n - 1;
+    while (low <= high) {
+        int mid = low + (high - low) / 2;
+
+        if (a[mid] >= x) {
+            ceilVal = a[mid];
+            high = mid - 1;
+        } else {
+            low = mid + 1;
+        }
+    }
+
+    return {floorVal, ceilVal};
+}
