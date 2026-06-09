@@ -1,0 +1,33 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+string calculateFactorial(int n)
+{
+    vector<int> digits(1, 1);
+
+    for (int x = 2; x <= n; x++)
+    {
+        int carry = 0;
+
+        for (int i = 0; i < digits.size(); i++)
+        {
+            int prod = digits[i] * x + carry;
+            digits[i] = prod % 10;
+            carry = prod / 10;
+        }
+
+        while (carry)
+        {
+            digits.push_back(carry % 10);
+            carry /= 10;
+        }
+    }
+
+    string ans;
+    for (int i = digits.size() - 1; i >= 0; i--)
+    {
+        ans += (digits[i] + '0');
+    }
+
+    return ans;
+}
