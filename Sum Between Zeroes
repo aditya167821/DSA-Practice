@@ -1,0 +1,33 @@
+Node *sumBetweenZeroes(Node *head)
+{
+    Node *curr = head->next;
+    Node *write = head;   
+
+    int sum = 0;
+
+    while (curr)
+    {
+        if (curr->data == 0)
+        {
+            write->data = sum;
+            sum = 0;
+
+            if (curr->next == NULL)  
+            {
+                write->next = NULL;
+                break;
+            }
+
+            write->next = curr;
+            write = curr;
+        }
+        else
+        {
+            sum += curr->data;
+        }
+
+        curr = curr->next;
+    }
+
+    return head;
+}
