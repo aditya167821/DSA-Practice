@@ -1,0 +1,27 @@
+class Solution {
+    private:
+    int height(Node * node){
+        if(node == NULL){
+            return 0;
+        }
+        int left = height(node->left);
+        int right = height(node->right);
+        
+        return max(height(node->left),height(node->right)) + 1;
+    }
+  public:
+    bool isBalanced(Node* root) {
+        
+        if(root == NULL){
+            return true;
+        }
+    
+    bool left = isBalanced(root->left);
+    bool right = isBalanced(root->right);
+    
+    bool diff = abs (height(root->left) - height(root->right)) <=1;
+    
+    return left && right && diff;
+        
+    }
+};
