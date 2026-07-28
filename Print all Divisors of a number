@@ -1,0 +1,22 @@
+#include <algorithm>
+
+int* printDivisors(int n, int &size)
+{
+    int *ans = new int[n];
+    size = 0;
+
+    for (int i = 1; i * i <= n; i++) {
+
+        if (n % i == 0) {
+
+            ans[size++] = i;
+
+            if (i != n / i)
+                ans[size++] = n / i;
+        }
+    }
+
+    sort(ans, ans + size);
+
+    return ans;
+}
