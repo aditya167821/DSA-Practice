@@ -1,0 +1,54 @@
+class Solution {
+public:
+    TreeNode* deleteNode(TreeNode* root, int key) {
+
+        // Node nahi mila
+        if(root == NULL) {
+            return NULL;
+        }
+
+        // Key chhoti hai -> left subtree
+        if(key < root->val) {
+            root->left = deleteNode(root->left, key);
+        }
+
+        // Key badi hai -> right subtree
+        else if(key > root->val) {
+            root->right = deleteNode(root->right, key);
+        }
+
+        // Node mil gaya
+        else {
+
+            // Case 1: No left child
+            if(root->left == NULL) {
+                TreeNode* temp = root->right;
+                delete root;
+                return temp;
+            }
+
+            // Case 2: No right child
+            else if(root->right == NULL) {
+                TreeNode* temp = root->left;
+                delete root;
+                return temp;
+            }
+
+            // Case 3: Two children
+            TreeNode* temp = root->right;
+
+            // Right subtree ka smallest node
+            while(temp->left != NULL) {
+                temp = temp->left;
+            }
+
+            // Value copy karo
+            root->val = temp->val;
+
+            // Duplicate node delete karo
+            root->right = deleteNode(root->right, temp->val);
+        }
+
+        return root;
+    }
+};
