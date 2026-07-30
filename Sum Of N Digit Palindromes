@@ -1,0 +1,39 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+long long sumOfNDigitPalindormes(int n)
+{
+    int half = (n + 1) / 2;
+
+    long long start, end;
+
+    if (n == 1)
+        start = 0;
+    else
+        start = 1;
+        
+    for(int i = 1; i < half; i++)
+        start *= 10;
+
+    end = start * 10 - 1;
+
+    if(n == 1)
+        end = 9;
+
+    long long sum = 0;
+
+    for(long long i = start; i <= end; i++)
+    {
+        string s = to_string(i);
+        string t = s;
+
+        if(n % 2 == 1)
+            t.pop_back();
+
+        reverse(t.begin(), t.end());
+
+        sum += stoll(s + t);
+    }
+
+    return sum;
+}
