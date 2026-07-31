@@ -1,0 +1,22 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+string convertString(string str)
+{
+    
+    if (!str.empty() && str[0] >= 'a' && str[0] <= 'z')
+    {
+        str[0] = str[0] - 'a' + 'A';
+    }
+
+    
+    for (int i = 1; i < str.length(); i++)
+    {
+        if (str[i - 1] == ' ' && str[i] >= 'a' && str[i] <= 'z')
+        {
+            str[i] = str[i] - 'a' + 'A';
+        }
+    }
+
+    return str;
+}
