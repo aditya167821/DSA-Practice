@@ -1,0 +1,25 @@
+long long firstOne() {
+    long long low = 0;
+    long long high = 1;
+
+    // Find the range containing the first 1
+    while (get(high) == 0) {
+        low = high;
+        high = high * 2;
+    }
+
+    // Binary Search for first occurrence of 1
+    while (low <= high) {
+        long long mid = low + (high - low) / 2;
+
+        if (get(mid) == 1) {
+            if (mid == 0 || get(mid - 1) == 0)
+                return mid;
+            high = mid - 1;
+        } else {
+            low = mid + 1;
+        }
+    }
+
+    return -1;
+}
