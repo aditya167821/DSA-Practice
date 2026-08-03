@@ -1,0 +1,29 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void solve(int rem, int start, vector<int> &path,
+           vector<vector<int>> &ans)
+{
+    if (rem == 0)
+    {
+        ans.push_back(path);
+        return;
+    }
+
+    for (int i = start; i <= rem; i++)
+    {
+        path.push_back(i);
+        solve(rem - i, i, path, ans);
+        path.pop_back();
+    }
+}
+
+vector<vector<int>> breakNumber(int n)
+{
+    vector<vector<int>> ans;
+    vector<int> path;
+
+    solve(n, 1, path, ans);
+
+    return ans;
+}
