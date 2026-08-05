@@ -1,0 +1,20 @@
+char firstNonRepeatingCharacter(string str)
+{
+    int freq[256] = {0};
+
+    // Count frequency
+    for(char ch : str)
+    {
+        freq[ch]++;
+    }
+
+    // Find first non-repeating character
+    for(char ch : str)
+    {
+        if(freq[ch] == 1)
+            return ch;
+    }
+
+    // If all characters repeat
+    return str[0];
+}
